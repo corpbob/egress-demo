@@ -4,7 +4,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var fortune = child_process.execSync('fortune');
+  var command= "curl http://bcorpus7.ellipticurve.com:8080/helloworld/";
+  var fortune = child_process.execSync(command);
   res.send(fortune.toString() + '\n');
 });
 
