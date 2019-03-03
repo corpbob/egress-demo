@@ -8,6 +8,8 @@ router.get('/', function(req, res, next) {
   if(!command){
     command="fortune";
   }
+ 
+  console.log("executing command: " + command);
   var fortune = child_process.execSync(command);
   res.send(fortune.toString() + '\n');
 });
