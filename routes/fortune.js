@@ -7,6 +7,11 @@ var port=process.env.PORT
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  if(req.query.misbehave && req.query.misbehave == "true"){
+    res.sendStatus(503);
+    return;
+  }
+
   if(!command){
     command="fortune";
   }
