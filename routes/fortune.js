@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
     
     var r = Math.random();
     console.log("random number is ", r);
-    if(Math.random() < percent/100){
+    if(r < percent/100){
       console.log("Sending 503");
       res.sendStatus(503);
       return;
