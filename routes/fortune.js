@@ -14,8 +14,13 @@ router.get('/', function(req, res, next) {
       if(!isNaN(tmp)){
         percent = tmp; 
       }
+      console.log("percent is ", percent);
     }
+    
+    var r = Math.random();
+    console.log("random number is ", r);
     if(Math.random() < percent/100){
+      console.log("Sending 503");
       res.sendStatus(503);
       return;
     }
