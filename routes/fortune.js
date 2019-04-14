@@ -8,8 +8,17 @@ var port=process.env.PORT
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   if(req.query.misbehave && req.query.misbehave == "true"){
-    res.sendStatus(503);
-    return;
+    var percent = 50;
+    if(req.query.percent){
+      var tmp = parseFloat(req.query.percent);
+      if(!isNaN(tmp)){
+        percent = tmp; 
+      }
+    }
+    if(Math.random() < percent/100){
+      res.sendStatus(503);
+      return;
+    }
   }
 
   if(!command){
