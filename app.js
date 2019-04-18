@@ -37,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/fortune', fortune);
+app.use('/fortune/v1', fortune);
+app.use('/fortune/v2', fortune);
 //app.use('/fortune-with-plugin', fortune_with_plugin);
 
 // catch 404 and forward to error handler
