@@ -1,9 +1,11 @@
 child_process = require('child_process');
 var express = require('express');
+var http = require('http');
 var router = express.Router();
 var command = process.env.FORTUNE_COMMAND;
 var host=process.env.HOST
 var port=process.env.PORT
+var url = process.env.GET_URL;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -42,6 +44,23 @@ router.get('/test', function(req, res, next) {
   console.log("executing command: " + command);
   var fortune = child_process.execSync(command);
   res.send(fortune.toString() + '\n');
+});
+
+router.get('/test2', function(req,res,next){
+ 
+  console.log("Getting ", url);
+  http.get(url, function(response){
+     
+      var rawData = '';
+      response.on('data', function(chunk){
+        rawData+=chunk;
+      });
+
+      response.on('end', function(){
+        console.log(rawData);
+        res.send('OK');
+      }); 
+  });
 });
 
 module.exports = router;
