@@ -63,4 +63,16 @@ router.get('/test2', function(req,res,next){
   });
 });
 
+router.post('/test', function(req, res, next){
+
+  console.log('post /test');
+  console.log(req.body);
+  theresponse = {
+    "code": "ok"
+  };
+
+  res.send(theresponse);
+  
+});
+
 module.exports = router;
