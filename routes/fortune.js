@@ -6,13 +6,24 @@ var command = process.env.FORTUNE_COMMAND;
 var host=process.env.HOST
 var port=process.env.PORT
 var url = process.env.GET_URL;
+var misbehave = process.env.MISBEHAVE;
+var misbehave_pct = process.env.MISBEHAVE_PERCENT;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  if(req.query.misbehave && req.query.misbehave == "true"){
+  //if(req.query.misbehave && req.query.misbehave == "true"){
+  if(misbehave == null){
+    misbehave = "false";
+  }
+
+  if(misbehave_pct == null){
+    misbehave_pct = "50";
+  }
+
+  if(misbehave == "true"){
     var percent = 50;
-    if(req.query.percent){
-      var tmp = parseFloat(req.query.percent);
+    if(misbehave_pct){
+      var tmp = parseFloat(misbehave_pct);
       if(!isNaN(tmp)){
         percent = tmp; 
       }
